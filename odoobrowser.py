@@ -113,14 +113,16 @@ def get_models_with_relations(model_names):
     results = get_models(model_names)
 
     relations = []
+    models = []
     for model in results:
         fields = get_fields(model['id'])
+        models.append((model, fields))
         for field in fields:
             if 'relation' in field and field['relation']:
                 if field['relation'] in model_names:
                     relations.append(field)
 
-    return results, relations
+    return models, relations
 
 
 @app.route('/')
@@ -201,7 +203,8 @@ def view_details(model_name, row_id):
     return render_template(
         'detail.html',
         object=results[0],
-        model=models[0],
+        model=models[0][0],
+        fields=models[0][1],
         relations=relations)
 
 

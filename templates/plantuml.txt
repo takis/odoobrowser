@@ -2,8 +2,8 @@
 hide methods
 
 {% for obj in objects %}
-class {{ obj.model }} {
-{% for field in obj.fields -%}
+class {{ obj.0.model }} {
+{% for field in obj.1 -%}
 {% if field.relation -%}
 {{ field.ttype }} {{ field.name }}
 {%- else -%}

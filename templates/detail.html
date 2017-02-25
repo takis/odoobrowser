@@ -8,4 +8,10 @@
 
     <h1>Model</h1>
     {{ dict_table(model.items()) }}
+
+    <h1>Fields <span class="badge">{{ fields|length }}</span></h1>
+    {% for field in fields %}
+        {{ dict_table(field.items()) }}
+        <hr>
+    {% endfor %}
 {% endblock %}
