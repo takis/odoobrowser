@@ -1,11 +1,11 @@
 import os
 from xmlrpc.client import Fault, ServerProxy
 
-from flask import Flask, redirect, render_template, url_for
+from flask import Flask, redirect, render_template, request, url_for
 from werkzeug.contrib.cache import SimpleCache
 
 app = Flask(__name__)
-cache = SimpleCache(default_timeout=300)
+cache = SimpleCache(default_timeout=1)
 
 
 SERVER = os.getenv('ODOO_SERVER', 'http://127.0.0.1:8069')
@@ -205,12 +205,13 @@ def view_details(model_name, row_id):
         relations=relations)
 
 
-@app.route('/plantuml')
+@app.route('/plantuml', methods=['POST'])
 def view_plantuml():
     """Return a PlantUML file for graphing the models"""
-    # FIXME: Provide a way to allow specifying which models to graph
-    model_names = ['sale.order', 'sale.order.line',
-                   'product.product', 'product.template']
+    model_names = []
+    for k, v in request.form.items():
+        if v == 'on':
+            model_names.append(k)
     results, relations = get_models_with_relations(model_names)
     return render_template(
         'plantuml.txt',
