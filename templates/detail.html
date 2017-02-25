@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Detail {{ object.name }} model data <span class="badge">{{ object.items()|length }}</span></h1>
+
+    {{ dict_table(object.items()) }}
+    {{ comb }}
+
+    <h1>Model</h1>
+    {{ dict_table(model.items()) }}
+{% endblock %}

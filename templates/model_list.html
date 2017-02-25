@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Odoo Models <span class="badge">{{ objects|length }}</span></h1>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>number</th>
+            <th>name</th>
+            <th>model</th>
+            <th>state</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for obj in objects %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ obj.name }}</td>
+                <td>{{ obj.model }}</td>
+                <td>{{ obj.state }}</td>
+                <td><a href="{{ url_for('view_model', model_name=obj.model) }}">data</a></td>
+                <td><a href="{{ url_for('view_data', model_name=obj.model) }}">JSON</a></td>
+                <td><a href="{{ url_for('view_data', model_name=obj.model) }}?use_table=1">tabular</a></td>
+                <td><a href="{{ url_for('list_fields', model_id=obj.id) }}">fields</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

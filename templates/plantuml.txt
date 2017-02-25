@@ -1,0 +1,19 @@
+@startuml
+hide methods
+
+{% for obj in objects %}
+class {{ obj.model }} {
+{% for field in obj.fields -%}
+{% if field.relation -%}
+{{ field.ttype }} {{ field.name }}
+{%- else -%}
+{{ field.ttype }} {{ field.name }}
+{%- endif %}
+{% endfor %}
+}
+{% endfor %}
+
+{% for rel in relations -%}
+{{rel.model }} -> {{rel.relation}} : {{ rel.name }} ({{ rel.ttype }})
+{% endfor %}
+@enduml

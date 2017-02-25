@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="jumbotron">
+        <h1>Odoo object browser</h1>
+        <p>This webapp allows you to browse the Odoo v8 object database using the XML-RPC API.</p>
+        <p>
+            <a class="btn btn-lg btn-primary" href="{{ url_for('list_models') }}" role="button">View all
+                models &raquo;</a>
+        </p>
+        <p>{{ config.server }}</p>
+        <p>{{ config.database }}</p>
+        <p>{{ config.username }}</p>
+    </div>
+{% endblock %}

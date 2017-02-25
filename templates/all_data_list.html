@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>View {{ name }} model data <span class="badge">{{ objects|count }}</span></h1>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>number</th>
+            <th>name</th>
+            <th>created by</th>
+            <th>created on</th>
+            <th>last updated on</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for obj in objects %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>
+                    {% if request.args.use_table %}
+                        {{ dict_table(obj.items()) }}
+                    {% else %}
+                        {{ obj }}
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}-
