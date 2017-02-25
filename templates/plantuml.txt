@@ -1,4 +1,8 @@
 @startuml
+/' Save this file and use the PlantUML tool to convert
+it into a graph.
+See http://plantuml.sourceforge.net
+'/
 hide methods
 
 {% for obj in objects %}
