@@ -36,8 +36,7 @@ def query_odoo(model, operation, param, opts=None):
     if rv:
         app.logger.debug(f"returning cached results for {key}")
         return rv
-    else:
-        app.logger.debug(f"no cached results for {key}")
+    app.logger.debug(f"no cached results for {key}")
 
     common = ServerProxy(f"{SERVER}/xmlrpc/2/common")
     models = ServerProxy(f"{SERVER}/xmlrpc/2/object")
