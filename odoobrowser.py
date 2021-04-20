@@ -2,7 +2,7 @@ import os
 from xmlrpc.client import Fault, ServerProxy
 
 from flask import Flask, redirect, render_template, request, url_for
-from werkzeug.contrib.cache import SimpleCache
+from flask_caching import SimpleCache
 
 app = Flask(__name__)
 cache = SimpleCache(default_timeout=1)
