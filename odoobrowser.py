@@ -1,3 +1,4 @@
+"""A very basic Flask app to allow browsing the records of an Odoo server."""
 import os
 from xmlrpc.client import Fault, ServerProxy
 
