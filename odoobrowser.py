@@ -33,10 +33,10 @@ def query_odoo(model, operation, param, opts=None):
 
     # Check if the result was already retrieved earlier
     key = f"{model}-{operation}-{param}-{opts}"
-    rv = cache.get(key)
-    if rv:
+    cached_result = cache.get(key)
+    if cached_result:
         app.logger.debug(f"returning cached results for {key}")
-        return rv
+        return cached_result
     app.logger.debug(f"no cached results for {key}")
 
     common = ServerProxy(f"{SERVER}/xmlrpc/2/common")
